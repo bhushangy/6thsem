@@ -1,5 +1,3 @@
-package prog1;
-
 public class MissedCall {
 
 	String name,time;

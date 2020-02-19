@@ -1,5 +1,6 @@
-package prog1;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class MainClass {
 
@@ -50,6 +51,10 @@ public class MainClass {
 			
 			System.out.println("\n ur missed call directory\n");
 			for(MissedCall m : missedCallList) {
+				if(missedCallList.size() == 0) {
+					System.out.println("No Missed Calls");
+					break;
+				}
 				m.getNumber();			
 				System.out.println(" 1)delete number  2)go to next missed call  3)get call details\n 4)quit");
 				
@@ -81,6 +86,10 @@ public class MainClass {
 			long n;
 			n = sc.nextLong();
 			for(MissedCall m : missedCallList) {
+				if(missedCallList.size() == 0) {
+					System.out.println("No Missed Calls");
+					break;
+				}
 				if(m.number == n)
 					removeList.add(m);
 			}
@@ -88,8 +97,12 @@ public class MainClass {
 		}
 		
 		//final list
-		
+		System.out.println("Updated Missed Call List");
 		for(MissedCall m : missedCallList) {
+			if(missedCallList.size() == 0) {
+				System.out.println("No Missed Calls");
+				break;
+			}
 			m.getDetails();
 		}
 		sc.close();

@@ -1,4 +1,3 @@
-package prog1;
 import java.util.HashMap;
 
 public class DirectoryClass {
