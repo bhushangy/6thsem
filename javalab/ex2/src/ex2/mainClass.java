@@ -25,12 +25,12 @@ public class mainClass {
 		
 		//Sorting based on price 
 		
-		Collections.sort(bookList,new sortByPrice());
-		
-		for(bookInfo b : bookList) {
-			System.out.println(b);
-			bookListSorted.add(b);
-		}
+//		Collections.sort(bookList,new sortByPrice());
+//		
+//		for(bookInfo b : bookList) {
+//			System.out.println(b);
+//			bookListSorted.add(b);
+//		}
 		
 		
 		// list books with same author name
