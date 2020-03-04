@@ -1,8 +1,9 @@
 import javax.swing.*;
-
+import java.util.stream.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class StudentInfo extends JPanel implements ActionListener {
 
@@ -21,7 +22,7 @@ public class StudentInfo extends JPanel implements ActionListener {
 	JTextField txtsgpa;
 	JTextField txtcgpa; 
 	
-	JButton submit;
+	JButton validate;
 	JButton display;
 	JButton cgpaBut;
 	
@@ -34,30 +35,30 @@ public class StudentInfo extends JPanel implements ActionListener {
 		
 		name = new JLabel("Name:");
 		txtname = new JTextField(10);
-		txtname.setBounds(10,20,120,125);
+
 		usn = new JLabel("USN:");
 		txtusn = new JTextField(10);
-		txtusn.setBounds(10,60,120,125);
+		
 		age = new JLabel("Age:");
 		txtage = new JTextField(10);
-		txtage.setBounds(10,100,120,125);
+		
 		address = new JLabel("Address:");
 		txtaddress = new JTextField(10);
-		txtaddress.setBounds(10,140,120,125);
+		
 		sgpa = new JLabel("SGPA:");
 		txtsgpa = new JTextField(10);
-		txtsgpa.setBounds(10,180,120,125);
+	
 		cgpaBut = new JButton("Get CGPA");
 		txtcgpa = new JTextField(10);
-		txtcgpa.setBounds(10,220,120,125);
+	
 		
-		submit = new JButton("Submit");
+		validate = new JButton("validate");
 		display = new JButton("Display");
 		
 		
 		display.addActionListener(this);
 		cgpaBut.addActionListener(this);
-		submit.addActionListener(this);
+		validate.addActionListener(this);
 		
 		
 		add(name);
@@ -73,7 +74,7 @@ public class StudentInfo extends JPanel implements ActionListener {
 		add(cgpaBut);
 		add(txtcgpa);
 		
-		add(submit);
+		add(validate);
 		add(display);
 		
 	}
@@ -100,14 +101,6 @@ public class StudentInfo extends JPanel implements ActionListener {
 		
 	}
 	
-	public void validate() {
-		
-		
-		
-		
-		
-		
-	}
 	
 	
 	public void actionPerformed(ActionEvent evt){
@@ -117,13 +110,25 @@ public class StudentInfo extends JPanel implements ActionListener {
 			
 		}else if(evt.getSource() == cgpaBut) {
 			
-			sgp = txtsgpa.getText();
+			double sgpa[] = new double[8];
+			for(int i=0;i<8;i++) {
 			
-			txtcgpa.setText(String.valueOf((Double.parseDouble(sgp)/8)));
+				sgpa[i] = Double.parseDouble(JOptionPane.showInputDialog("enter sem "+(i+1)+" sgpa"));
+				
+			}
+			
+			double su = DoubleStream.of(sgpa).sum();
+			txtsgpa.setText(String.valueOf(su));
+			
+			txtcgpa.setText(String.valueOf(su/8));
 			
 		}
-		else if(evt.getSource() == submit) {
-			validate();
+		else if(evt.getSource() == validate) {
+			if(Integer.parseInt(txtage.getText())>22 && Integer.parseInt(txtage.getText()) <18 ) {
+				
+				JOptionPane.showMessageDialog(null,"Invalid Age!!!");
+				
+			}
 		}
 		
 		
